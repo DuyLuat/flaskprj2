@@ -1,8 +1,6 @@
 from flask import Flask, url_for, request, json, jsonify, render_template
 import pymysql
  
-
-  
 db = pymysql.connect(host='localhost',
                            user='root',
                            password='',
@@ -10,6 +8,8 @@ db = pymysql.connect(host='localhost',
                            charset='utf8mb4',
                            cursorclass=pymysql.cursors.DictCursor) 
 app = Flask(__name__)
+
+
 @app.route("/")
 def index():
    return render_template('base.html')
@@ -33,6 +33,4 @@ def process():
       db.commit()
       msg = 'You have successfully registered!'
       return jsonify({'name' : msg})
-
- 
    return jsonify({'error' : 'Missing data!'})
